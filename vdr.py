@@ -103,22 +103,6 @@ def dwl_vdr(email_add, password, server, fr, f_name):
                                 error_file.append(fileName)
                                 pass
 
-                        elif fnmatch.fnmatch(fileName, "*.dat*"):
-                            try:
-                                att_path = os.path.join(folder_name, fileName + "")
-                                if not os.path.isfile(att_path):
-                                    fp = open(att_path, "wb")
-                                    fp.write(part.get_payload(decode=True))
-                                    fp.close()
-                                else:
-                                    #num += 1
-                                    fp = open(att_path, "wb")
-                                    fp.write(part.get_payload(decode=True))
-                                    fp.close()
-                            except TypeError as e:
-                                error_file.append(fileName)
-                                pass
-
                     except TypeError as e:
                         error_file.append(fileName)
                         pass

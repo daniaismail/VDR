@@ -4,10 +4,10 @@ from datetime import datetime, timedelta
 import os
 import fnmatch
 
-file_path = r'C:\Users\Double33\PycharmProjects\pythonProject-mvmweb\Email\Downloaded'
+file_path = r'C:\Users\Double33\PycharmProjects\VDR\Downloaded'
 date = (datetime.today()).strftime("%d-%b-%Y")
 today = datetime.today()
-cutoff = today - timedelta(days=10)
+cutoff = today - timedelta(days=1)
 dt = cutoff.strftime('%d-%b-%Y')
 error_file = []
 
@@ -16,7 +16,6 @@ email_add = "dania@meridiansurveys.com.my"
 password = "e*eM-@FfK$w*"
 
 '''
-
 email_vdr1 = "vdr1@meridiansurveys.com.my"
 pwd_vdr1 = "x2c(UR*{gfT#"
 

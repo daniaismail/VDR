@@ -4,10 +4,10 @@ from datetime import datetime, timedelta
 import os
 import fnmatch
 
-file_path = r'C:\Users\Double33\PycharmProjects\VDR\Downloaded'
+file_path = r'C:\Users\MVMWEB\pythonProject\Email\Downloaded'
 date = (datetime.today()).strftime("%d-%b-%Y")
 today = datetime.today()
-cutoff = today - timedelta(days=1)
+cutoff = today - timedelta(days=2)
 dt = cutoff.strftime('%d-%b-%Y')
 error_file = []
 
@@ -31,17 +31,17 @@ pwd_wgg = "s9nPviD\\"
 server_wgg = "mail.wild-geese-group.com"
 server_mssb = "meridian-svr.meridiansurveys.com.my"
 
-fr_vdr1 = ["jmmurni@jmfleet.com.my", "omniemery1@iconoffshore.com.my", "vanessa9@ipsignature3.net", "jmseribesut@jmfleet.com.my", "setiateguh@stationsatcom.commbox.com", "setiazaman@stationsatcom.commbox.com", "nauticatg.puteri28@gmail.com", "express.alpha@jvcmega.com.my", "9mvp9@amosconnect.com", "centusone@ipsignature3.net", "centusthree@ipsignature3.net", "centustwo@ipsignature3.net", "exh@eopl.gtmailplus.com", "iconamara@iconoffshore.com.my", "jmabadi@jmfleet.com.my", "jmpermai@jmfleet.com.my", "taqwaadam@singtelmailbiz.com", "skpatriot@skom.com.my", "yinsonperwira@stationsatcommail.com", "sjane.captain@sapuraenergy.com", "skatomik@skom.com.my", "skline79@skom.com.my", "perdanamarathon@intraoil.com.my", "setiajihad@stationsatcommail.com", "jmehsan@jmfleet.com.my", "ese@eopl.gtmailplus.com", "skpride@skom.com.my", "ebr@eopl.gtmailplus.com", "ete@eopl.gtmailplus.com", "Express85@gtmailplus.com", "jmpurnama@jmfleet.com.my", "exn@eopl.gtmailplus.com", "taqwaadam14@gmail.com", "fcbmasindah@outlook.com"]
-f_name_vdr1 = ["jm murni", "omni emery 1", "vanessa 9", "jm seri besut", "setia teguh", "setia zaman", "ntp 28",  "express alpha", "ntp 29", "centus one", "centus three", "centus two", "executive honour", "icon amara", "jm abadi", "jm permai", "mv taqwa adam", "sk patriot", "yinson perwira", "sapura jane", "sk atomik", "sk line 79", "p marathon", "setia jihad", "jm ehsan", "executive stride", "sk pride", "executive brilliance", "executive tide", "express 85", "jm purnama", "executive excellence", "mv taqwa adam", "mas indah"]
+fr_vdr1 = ["jmmurni@jmfleet.com.my", "omniemery1@iconoffshore.com.my", "vanessa9@ipsignature3.net", "jmseribesut@jmfleet.com.my", "setiateguh@stationsatcom.commbox.com", "setiazaman@stationsatcom.commbox.com", "express.alpha@jvcmega.com.my", "9mvp9@amosconnect.com", "centusone@ipsignature3.net", "centusthree@ipsignature3.net", "centustwo@ipsignature3.net", "exh@eopl.gtmailplus.com", "iconamara@iconoffshore.com.my", "jmabadi@jmfleet.com.my", "jmpermai@jmfleet.com.my", "skpatriot@skom.com.my", "yinsonperwira@stationsatcommail.com", "skatomik@skom.com.my", "skline79@skom.com.my", "jmehsan@jmfleet.com.my", "ebr@eopl.gtmailplus.com", "Express85@gtmailplus.com", "jmpurnama@jmfleet.com.my", "exn@eopl.gtmailplus.com", "taqwaadam14@gmail.com", "fcbmasindah@outlook.com", "dayang_almira@ipsignature3.net", "ebn@eopl.gtmailplus.com", "vdr.mkbumimas@gmail.com", "pacific.harrier@spoships.com", "master@tourmaline.ss.commbox.com", "lsk.bridge@emas.com"]
+f_name_vdr1 = ["hess\\jm murni", "hess\\omni emery 1", "jxnippon\\vanessa 9", "petrofac\\jm seri besut", "petrofac\\setia teguh", "petrofac\\setia zaman", "pflng\\express alpha", "pflng\\ntp 29", "pttep\\centus one", "pttep\\centus three", "pttep\\centus two", "pttep\\executive honour", "hess\\icon amara", "pttep\\jm abadi", "pttep\\jm permai", "pttep\\sk patriot", "pttep\\yinson perwira", "petrofac\\sk atomik", "pttep\\sk line 79", "petrofac\\jm ehsan", "pttep\\executive brilliance", "petrofac\\express 85", "pttep\\jm purnama", "pttep\\executive excellence", "pttep\\mv taqwa adam", "jxnippon\\mas indah", "jxnippon\\dayang almira", "pttep\\executive benevolence", "pttep\\mas baiduri", "pttep\\pacific harrier", "pttep\\tourmaline", "pttep\\jp88 stork"]
 
 fr_vdr = ["iconamara@iconoffshore.com.my", "dayang_almira@ipsignature3.net", "lsk.bridge@emas.com", "vdr.mkbumimas@gmail.com", "pacific.harrier@spoships.com", "master@tourmaline.ss.commbox.com"]
 f_name_vdr = ["icon amara", "dayang almira", "lewek stork", "mas baiduri", "pacific harrier", "tourmaline"]
 
 fr_mvmcc = ["skprodigy@skom.com.my", "9mvp7@amosconnect.com", "9mvp8@amosconnect.com"]
-f_name_mvmcc = ["sk prodigy", "ntp 27", "ntp 28"]
+f_name_mvmcc = ["pflng\\sk prodigy", "pflng\\ntp 27", "pflng\\ntp 28"]
 
 fr_wgg = ["ntpxxxVII@amosconnect.com"]
-f_name_wgg = ["ntp 37"]
+f_name_wgg = ["pflng\\ntp 37"]
 
 if not os.path.exists(file_path):
     os.mkdir(file_path)
@@ -119,5 +119,5 @@ def dwl_vdr(email_add, password, server, fr, f_name):
 
 dwl_vdr(email_wgg, pwd_wgg, server_wgg, fr_wgg, f_name_wgg)
 dwl_vdr(email_mvmcc, pwd_mvmcc, server_mssb, fr_mvmcc, f_name_mvmcc)
-#dwl_vdr(email_vdr1, pwd_vdr1, server_mssb, fr_vdr1, f_name_vdr1)
-dwl_vdr(email_vdr, pwd_vdr, server_mssb, fr_vdr, f_name_vdr)
+dwl_vdr(email_vdr, pwd_vdr, server_mssb, fr_vdr1, f_name_vdr1)
+#dwl_vdr(email_vdr, pwd_vdr, server_mssb, fr_vdr, f_name_vdr)

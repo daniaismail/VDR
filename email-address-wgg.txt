@@ -1,0 +1,11 @@
+ntp28@ipsignature3.net,NTP 28,PFLNG SATU
+ntp37@ipsignature3.net,NTP 37,PFLNG SATU
+jasondua@asiasealink.com,JASON DUA,PFLNG SATU
+bridge.columbia@marine-mail.com,GH COLUMBIA,PETRONAS
+ro.petragalaxy@gmail.com,PETRA GALAXY,PETRONAS
+psalm38@gtmailplus.com,PSALM 38,PETRONAS
+jmsalam@jmfleet.com.my,JM SALAM,PETRONAS
+kasmarine1@fleetmail.inmarsat.com,KAS MARINE,PETRONAS
+bridge.mk2@stationsatcommail.com,MK2,PETRONAS
+skpower@skom.com.my,SK POWER,PETRONAS
+pioneer.bridge@gtships.com,MV PIONEER,PETRONAS

@@ -2,6 +2,7 @@ import imaplib
 import email
 import smtplib
 import sys
+import calendar
 from datetime import datetime, timedelta
 import os
 import fnmatch
@@ -13,28 +14,32 @@ import logging
 
 today = datetime.today()
 t = today.strftime("%d%m%y")
+yesterday = today - timedelta(days=1)
+year = yesterday.year
+y_month = yesterday.month
+month = calendar.month_abbr[y_month].upper()
+dt = yesterday.strftime('%d-%b-%Y')
 logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%d%m%Y %I:%M:%S%p', filename=f"C:/Users/mvmwe/PycharmProjects/VDR/log/log {t}.txt", level=logging.DEBUG)
-yesterday = datetime.today() - timedelta(1)
-cutoff = today - timedelta(days=1)
-dt = cutoff.strftime('%d-%b-%Y')
 file_path = r'C:\Users\mvmwe\Dropbox\MVMCC\VDR'
-folder_year_path = os.path.join(file_path, str(yesterday.year))
-folder_month_path = os.path.join(folder_year_path, strftime("%b").upper())
+folder_full_path = os.path.join(file_path, str(year), str(month))
 error_file = []
 
 if not os.path.exists(file_path):
-    os.mkdir(file_path)
+    os.makedirs(file_path)
+else:
+    print(f"Folder '{file_path}' already exists")
 
-if not os.path.exists(folder_year_path):
-    os.mkdir(folder_year_path)
+if not os.path.exists(folder_full_path):
+    os.makedirs(folder_full_path)
+else:
+    print(f"Folder '{folder_full_path}' already exists")
 
-if not os.path.exists(folder_month_path):
-    os.mkdir(folder_month_path)
-
-message = "VDR Directory: " + folder_month_path
+message = "VDR Directory: " + folder_full_path
 # EMAIL INFO
 email_vdr = "vdr@meridiansurveys.com.my"
 pwd_vdr = "T%zf5ccq;ZMc"
+email_mvmcc = "mvmcc@meridiansurveys.com.my"
+pwd_mvmcc = "dc)in]}Xzk&%"
 server_mssb = "meridian-svr.meridiansurveys.com.my"
 
 # READ FROM TXT FILE AND APPEND INTO LIST
@@ -58,6 +63,7 @@ except:
     logging.exception('Error info in text file or check txt file name')
     sys.exit()
 
+# DOWNLOAD VDRS FROM EMAIL FUNCTION
 def dwl_vdr(email_add, password, server, vesselEmail, vesselName):
     imap = imaplib.IMAP4_SSL(server, 993)
     imap.login(email_add, password)
@@ -67,7 +73,7 @@ def dwl_vdr(email_add, password, server, vesselEmail, vesselName):
 
     while index < len(vesselEmail) and index < len(vesselName):
         try:
-            client_folder = os.path.join(folder_month_path, clientname_list[index])
+            client_folder = os.path.join(folder_full_path, clientname_list[index])
 
             if not os.path.exists(client_folder):
                 os.mkdir(client_folder)
@@ -143,7 +149,7 @@ def dwl_vdr(email_add, password, server, vesselEmail, vesselName):
 
                 # print(att_path)
 
-                for response in data:
+                '''for response in data:
                     if isinstance(response, tuple):
                         data = email.message_from_bytes(response[1])
                         subject = decode_header(data["Subject"])[0][0]
@@ -152,6 +158,7 @@ def dwl_vdr(email_add, password, server, vesselEmail, vesselName):
                             subject = subject.decode()
                         logging.debug(f'Deleting email {subject}')
                 imap.store(num, "+FLAGS", "\\Deleted")
+                '''
 
             index += 1
 
@@ -159,11 +166,14 @@ def dwl_vdr(email_add, password, server, vesselEmail, vesselName):
             print(k)
             continue
 
-    imap.expunge()
+    #imap.expunge()
     imap.close()
     imap.logout()
-    logging.debug('Job finished..')
+    logging.debug('Downloading finished..')
 
+
+'''
+# SEND EMAIL WHEN FINISHED FUNCTION
 def send_email(finishmessage):
     msg = MIMEMultipart()
     message = str(finishmessage)
@@ -183,10 +193,24 @@ def send_email(finishmessage):
 
     server.sendmail(msg['From'], msg['To'], msg.as_string())
     server.quit()
+'''
+
+# DELETE EMPTY FOLDER FUNCTION
+def delete_empty_folders(folder_full_path):
+    for folder_name, subfolders, files in os.walk(folder_full_path, topdown=False):
+        for subfolder in subfolders:
+            folder_path = os.path.join(folder_name, subfolder)
+            if not os.listdir(folder_path):
+                os.rmdir(folder_path)
+                logging.debug(f"Deleted empty folder: {folder_path}")
+                print(f"Deleted empty folder: {folder_path}")
+
 
 try:
     logging.debug('Downloading..')
     dwl_vdr(email_vdr, pwd_vdr, server_mssb, vesselemail_list, vesselname_list)
+    dwl_vdr(email_mvmcc, pwd_mvmcc, server_mssb, vesselemail_list, vesselname_list)
+    delete_empty_folders(folder_full_path)
     #send_email(message)
 
 except Exception as e:

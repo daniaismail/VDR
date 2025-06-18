@@ -14,13 +14,13 @@ import logging
 
 today = datetime.today()
 t = today.strftime("%d%m%y")
-yesterday = today - timedelta(days=1)
+yesterday = today - timedelta(days=16)
 year = yesterday.year
 y_month = yesterday.month
 month = calendar.month_abbr[y_month].upper()
 dt = yesterday.strftime('%d-%b-%Y')
-logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%d%m%Y %I:%M:%S%p', filename=f"C:/Users/mvmwe/PycharmProjects/VDR/log/log {t}.txt", level=logging.DEBUG)
-file_path = r'C:\Users\mvmwe\Dropbox\MVMCC\VDR'
+logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%d%m%Y %I:%M:%S%p', filename=f"C:/Users/user/PycharmProjects/VDR/log/log {t}.txt", level=logging.DEBUG)
+file_path = r'C:/Users/user/Dropbox/MVMCC\VDR'
 folder_full_path = os.path.join(file_path, str(year), str(month))
 error_file = []
 
@@ -50,7 +50,7 @@ vesselname_list = []
 logging.debug('Logging started..')
 logging.debug('Open email-address.txt')
 try:
-    with open(r'C:\Users\mvmwe\PycharmProjects\VDR\email-address.txt') as f:
+    with open(r'C:\Users\user\PycharmProjects\VDR\email-address.txt') as f:
         try:
             for line in f:
                 vesselemail, vesselname, clientname = line.split(',')
@@ -87,12 +87,23 @@ def dwl_vdr(email_add, password, server, vesselEmail, vesselName):
             for num in data[0].split():
                 typ, data = imap.fetch(num, '(RFC822)')
                 raw_email = data[0][1]
+
+                '''
                 raw_email_string = raw_email.decode('ISO-8859–1')
                 email_message = email.message_from_string(raw_email_string)
                 subject_name = email_message['subject']
+                
+                '''
+                email_message = email.message_from_bytes(raw_email)
+                subject, encoding = decode_header(email_message["Subject"])[0]
+
+                if isinstance(subject, bytes):
+                    subject = subject.decode(encoding or "UTF-8", errors="replace")
+
+                print(f'Subject: {subject}')
 
                 # att_path = "No attachment found from email " + subject_name
-                logging.debug(f'Email subject: {subject_name}')
+                logging.debug(f'Email subject: {subject}')
                 for part in email_message.walk():
                     try:
                         if part.get_content_maintype() == 'multipart':
@@ -101,47 +112,52 @@ def dwl_vdr(email_add, password, server, vesselEmail, vesselName):
                             continue
 
                         fileName = part.get_filename()
-                        if fnmatch.fnmatch(fileName, "*.xls*"):
-                            try:
-                                att_path = os.path.join(folder_name, fileName)
-                                print(att_path)
-                                if not os.path.isfile(att_path):
-                                    fp = open(att_path, "wb")
-                                    fp.write(part.get_payload(decode=True))
-                                    fp.close()
-                            except TypeError as e:
-                                error_file.append(fileName)
-                                continue
-                            logging.debug(f'File downloaded: {fileName}')
+                        if fileName:
+                            decode_name, encoding = decode_header(fileName)[0]
+                            if isinstance(decode_name, bytes):
+                                decode_name = decode_name.decode(encoding or "UTF-8", errors="replace")
 
-                        elif fnmatch.fnmatch(fileName, "*.doc*"):
+                        if fnmatch.fnmatch(decode_name, "*.xls*"):
                             try:
-                                att_path = os.path.join(folder_name, fileName)
+                                att_path = os.path.join(folder_name, decode_name)
                                 print(att_path)
                                 if not os.path.isfile(att_path):
                                     fp = open(att_path, "wb")
                                     fp.write(part.get_payload(decode=True))
                                     fp.close()
                             except TypeError as e:
-                                error_file.append(fileName)
+                                error_file.append(decode_name)
                                 continue
-                            logging.debug(f'File downloaded: {fileName}')
+                            logging.debug(f'File downloaded: {decode_name}')
 
-                        elif fnmatch.fnmatch(fileName, "*.pdf"):
+                        elif fnmatch.fnmatch(decode_name, "*.doc*"):
                             try:
-                                att_path = os.path.join(folder_name, fileName)
+                                att_path = os.path.join(folder_name, decode_name)
                                 print(att_path)
                                 if not os.path.isfile(att_path):
                                     fp = open(att_path, "wb")
                                     fp.write(part.get_payload(decode=True))
                                     fp.close()
                             except TypeError as e:
-                                error_file.append(fileName)
+                                error_file.append(decode_name)
                                 continue
-                            logging.debug(f'File downloaded: {fileName}')
+                            logging.debug(f'File downloaded: {decode_name}')
+
+                        elif fnmatch.fnmatch(decode_name, "*.pdf"):
+                            try:
+                                att_path = os.path.join(folder_name, decode_name)
+                                print(att_path)
+                                if not os.path.isfile(att_path):
+                                    fp = open(att_path, "wb")
+                                    fp.write(part.get_payload(decode=True))
+                                    fp.close()
+                            except TypeError as e:
+                                error_file.append(decode_name)
+                                continue
+                            logging.debug(f'File downloaded: {decode_name}')
 
                         else:
-                            logging.debug(f'No file downloaded from {subject_name}')
+                            logging.debug(f'No file downloaded from {subject}')
 
                     except (OSError, TypeError) as f:
                         print(f)

@@ -6,21 +6,27 @@ import calendar
 from datetime import datetime, timedelta
 import os
 import fnmatch
+from tnefparse import TNEF
 from time import strftime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.header import decode_header
 import logging
 
+'''
+#CUSTOM START AND END DATE
+start_date = "02-Aug-2025"
+end_date = "22-Aug-2025"
+'''
 today = datetime.today()
 t = today.strftime("%d%m%y")
-yesterday = today - timedelta(days=16)
+yesterday = today - timedelta(days=1)
 year = yesterday.year
 y_month = yesterday.month
 month = calendar.month_abbr[y_month].upper()
 dt = yesterday.strftime('%d-%b-%Y')
 logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%d%m%Y %I:%M:%S%p', filename=f"C:/Users/user/PycharmProjects/VDR/log/log {t}.txt", level=logging.DEBUG)
-file_path = r'C:/Users/user/Dropbox/MVMCC\VDR'
+file_path = r'C:/Users/user/Dropbox/MVMCC/VDR'
 folder_full_path = os.path.join(file_path, str(year), str(month))
 error_file = []
 
@@ -37,9 +43,9 @@ else:
 message = "VDR Directory: " + folder_full_path
 # EMAIL INFO
 email_vdr = "vdr@meridiansurveys.com.my"
-pwd_vdr = "T%zf5ccq;ZMc"
+pwd_vdr = "MBrC3B}_z8DK"
 email_mvmcc = "mvmcc@meridiansurveys.com.my"
-pwd_mvmcc = "dc)in]}Xzk&%"
+pwd_mvmcc = "HehAb58ynLR3FX"
 server_mssb = "meridian-svr.meridiansurveys.com.my"
 
 # READ FROM TXT FILE AND APPEND INTO LIST
@@ -82,6 +88,10 @@ def dwl_vdr(email_add, password, server, vesselEmail, vesselName):
             if not os.path.exists(folder_name):
                 os.mkdir(folder_name)
             logging.debug(f'Download from email {vesselEmail[index]}')
+            '''
+            imapsearch = f'(SINCE {start_date} BEFORE {end_date} FROM "{vesselEmail[index]}")'
+            typ,data = imap.search(None, imapsearch)
+            '''
             typ, data = imap.search(None, '(SINCE %s)' % (dt,), '(FROM %s)' % (vesselEmail[index],))
 
             for num in data[0].split():
@@ -156,6 +166,26 @@ def dwl_vdr(email_add, password, server, vesselEmail, vesselName):
                                 continue
                             logging.debug(f'File downloaded: {decode_name}')
 
+                        elif fnmatch.fnmatch(decode_name, "winmail.dat"):
+                            try:
+                                att_path = os.path.join(folder_name, decode_name)
+                                print(att_path)
+                                print(folder_name)
+
+                                if os.path.exists(att_path):
+                                    os.remove(att_path)
+
+                                if not os.path.isfile(att_path):
+                                    with open(att_path, "wb") as fp:
+                                        fp.write(part.get_payload(decode=True))
+                                    extract_winmail_dat(att_path, folder_name)
+                                    os.remove(att_path)
+                                    print("Remove dat file")
+                            except TypeError as e:
+                                error_file.append(decode_name)
+                                continue
+                            logging.debug(f'File downloaded: {decode_name}')
+
                         else:
                             logging.debug(f'No file downloaded from {subject}')
 
@@ -221,6 +251,36 @@ def delete_empty_folders(folder_full_path):
                 logging.debug(f"Deleted empty folder: {folder_path}")
                 print(f"Deleted empty folder: {folder_path}")
 
+def extract_winmail_dat(file_path, output_directory):
+    """
+    Extracts attachments and body from a winmail.dat file.
+
+    Args:
+        file_path (str): The path to the winmail.dat file.
+        output_directory (str): The directory where extracted files will be saved.
+    """
+    try:
+        with open(file_path, 'rb') as f:
+            winmail_data = f.read()
+
+        tnef_data = TNEF(winmail_data)
+
+        # Extract attachments
+        for attachment in tnef_data.attachments:
+            attachment_name = attachment.long_filename() or attachment.name
+            with open(f"{output_directory}/{attachment_name}", 'wb') as out_f:
+                out_f.write(attachment.data)
+            print(f"Extracted attachment: {attachment_name}")
+
+        # Extract email body (if present)
+        if tnef_data.body:
+            body_content = tnef_data.body.decode('utf-8', errors='ignore')
+            with open(f"{output_directory}/email_body.txt", 'w', encoding='utf-8') as body_f:
+                body_f.write(body_content)
+            print("Extracted email body.")
+
+    except Exception as e:
+        print(f"Error extracting winmail.dat: {e}")
 
 try:
     logging.debug('Downloading..')

@@ -1,1 +1,74 @@
+iconsamudera@iconoffshore.com.my,ICON SAMUDERA,ConocoPhillips
+skpower@skom.com.my,SK POWER,ConocoPhillips
+jvcsapphire@jvcmega.com.my,JVC SAPPHIRE,ConocoPhillips
+c_safina1@centusfleet.com,CENTUS SAFINA ONE,ENQUEST
+cass9@asiasealink.com,CASSANDRA 9,ENQUEST
+bimalapan@ipsignature3.net,BIMA LAPAN,ENQUEST
+haiduong19@haduco.com.vn,HAI DUONG 19,ENQUEST
+psv.pristinebeta@gmail.com,PRISTINE BETA,ENQUEST
+gom7@gtmailplus.com,GRADE ONE MANJUNG 7,ENQUEST
+jmabadi@jmfleet.com.my,JM ABADI,ENQUEST
+slk161@asiasealink.com,SEALINK 161,ENQUEST
 jmbayu@jmfleet.com.my,JM BAYU,ENQUEST
+myycamellia@jc-fleet.com,MYY CAMELLIA,ENVIROS
+AishahAims1@canopus-mail.com,AISHAH AIMS 1,JADESTONEENERGY
+alkahfigentle@ffsb-malaysia.com,ALKAHFI GENTLE,JADESTONEENERGY
+master@aishahaims5.aimsglobal.commbox.com,AISHAH AIMS 5,JADESTONEENERGY
+mklapan517@gmail.com,MK LAPAN,MubadalaPetroleum
+hdwira@hdcrms.com,HD WIRA,PETROFAC MALAYSIA
+twolekir@twomarine.com,TWO LEKIR,PETROFAC MALAYSIA
+twonadim@twomarine.com,TWO NADIM,PETROFAC MALAYSIA
+ntp37@ipsignature3.net,NTP 37,PFLNG SATU
+ntp29@ipsignature3.net,NTP 29,PFLNG SATU
+9mvp8@amosconnect.com,NTP 28,PFLNG SATU
+9mvp7@amosconnect.com,NTP 27,PFLNG SATU
+twokasturi@twomarine.com,TWO KASTURI,PFLNG SATU
+ntp23@ipsignature3.net,NTP 23,PFLNG SATU
+marinecitrine@gof.com.my,MARINE CITRINE,PFLNG SATU
+bridgewater130@kimheng.com.sg,BRIDGEWATER 130,PTTEP
+bourbon-ben-nevis@bourbon-online.com,BEN NEVIS,PTTEP
+sduyong.bridge@vantrisenergy.com,SAPURA DUYONG,PTTEP
+centusone@centus.commbox.com,CENTUS ONE,PTTEP
+centus3@centusfleet.com,CENTUS THREE,PTTEP
+target8@jvcmega.com.my,TARGET 8,PTTEP
+sredang.bridge@sapuraenergy.com,KPV REDANG,PTTEP
+perdanavoyager@perdana.my,PERDANA VOYAGER,PTTEP
+9myr5@ipsignature3.net,NAUTICA GAMBIR,PTTEP
+sconquest.captain@vantrisenergy.com,SAPURA CONQUEST,PTTEP
+master.kasmarine1@gtmailplus.com,KAS MARINE 1,PTTEP
+berkat.tenang@mmpetroniaga.com,BERKAT TENANG,PTTEP
+master.grace@javaoffshore.com,M GRACE,PTTEP
+slk179@asiasealink.com,SEALINK 179,PTTEP
+skperfect@skom.com.my,SK PERFECT,PTTEP
+centustwo@centus.commbox.com,CENTUS TWO,PTTEP
+skprudence@skosv.com.my,SK PRUDENCE,PTTEP
+bridge.columbia@marine-mail.com,GH COLUMBIA,PETRONAS
+ro.petragalaxy@gmail.com,PETRA GALAXY,PETRONAS
+jayacoastalvdr@gmail.com,PSALM 38,PETRONAS
+jmsalam@jmfleet.com.my,JM SALAM,PETRONAS
+kasmarine1@fleetmail.inmarsat.com,KAS MARINE,PETRONAS
+bridge.mk2@stationsatcommail.com,MK2,PETRONAS
+skpower@skom.com.my,SK POWER,PETRONAS
+pioneer.bridge@gtships.com,MV PIONEER,PETRONAS
+pacific.gannet@tdw.com,PACIFIC GANNET,PETRONAS
+mp.dynamic@skom.com.my,MP DYNAMIC,PETRONAS
+ete@eopl.gtmailplus.com,EXECUTIVE TIDE,PETRONAS
+iconzara@iconoffshore.com.my,ICON ZARA,PETRONAS
+Surya.hana@ipsignature3.net,HANA,PETRONAS
+master.ims.aman@keyfieldoffshore.com,IMS AMAN,PETRONAS
+assbhaidah@gmail.com,AJANG HAIDAH,PETRONAS
+jmbayu@jmfleet.com.my,JM BAYU,PETRONAS
+sduyong.bridge@sapuraenergy.com,SAPURA DUYONG,PETRONAS
+olvsupporter@alam-maritim.my,OLV SUPPORTER,PETRONAS
+jmcekal@jmfleet.com.my,JM CEKAL,PETRONAS
+jmtabah@jmfleet.com.my,JM TABAH,PETRONAS
+jmperkasa2@jmfleet.com.my,JM PERKASA 2,PETRONAS
+sgemia.bridge@sapuraenergy.com,MV GEMIA,PETRONAS
+jmtenang@jmfleet.com.my,JM TENANG,PETRONAS
+jmintan@jmfleet.com.my,JM INTAN,PETRONAS
+tegasmadani@tegasnav.com,TEGAS MADANI,PETRONAS
+jatieight@dinastiajati.com,JATI EIGHT,PETRONAS
+setiajihad@stationsatcommail.com,SETIA JIHAD,PETRONAS
+master@alkahficourage.pelican.commbox.com,ALKAHFI COURAGE,PETRONAS
+skmaven@skom.com.my,SK MAVEN,PETRONAS
+winningventure3@gof.com.my,WINNING VENTURE 3,PETRONAS
